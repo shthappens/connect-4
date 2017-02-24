@@ -2,7 +2,7 @@
 require_relative "board"
 require_relative "player"
 require_relative "board_space"
-
+require_relative "game_turn"
 
 puts "Welcome to Connect 4!"
 
@@ -22,9 +22,10 @@ turn_index = 0
 while board.empty_spaces? && !board.winner?
   current_player = players[turn_index]
 
-  puts "It is Player #{current_player.name}'s turn."
+  puts "It is #{current_player.name}'s turn."
 
   puts "What column do you want to play (A, B, C, D, E, F, or G)? "
+
   user_input = gets.chomp.downcase
     if user_input == "a"
       col_index = 0
@@ -40,8 +41,9 @@ while board.empty_spaces? && !board.winner?
       col_index = 5
     elsif user_input == "g"
       col_index = 6
-    else
-      puts "Please select a column."
+    elsif user_input != ("a" || "b" || "c" || "d" || "e" || "f" || "g")
+      puts "Please select a valid column (A, B, C, D, E, F, or G)."
+      redo
     end
 
   board.rows.each_with_index do |row, index|
@@ -51,6 +53,10 @@ while board.empty_spaces? && !board.winner?
     else
       @row_index = 6
     end
+  end
+
+  if board.rows[0][col_index].occupied?
+    redo
   end
 
   board.add_turn(current_player, @row_index, col_index)
@@ -63,4 +69,14 @@ while board.empty_spaces? && !board.winner?
     puts "Congratulations, #{current_player.name}! You won!"
   end
 
+  if board.empty_spaces? == false
+    puts "Stalemate! There are no more spaces to play. Would you like to play again?"
+    new_game = gets.chomp.downcase
+    if new_game == "y"
+      board = Board.new
+      redo
+    else
+      break
+    end
+  end
 end

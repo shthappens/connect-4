@@ -2,8 +2,8 @@ require 'spec_helper'
 
 describe GameTurn do
   let(:board) { Board.new }
-  let(:player) { Player.new("X") }
-  let(:opposing_player) { Player.new("O") }
+  let(:player) { Player.new("Seth", "X") }
+  let(:opposing_player) { Player.new("Sam", "O") }
   let(:row_index) { 0 }
   let(:col_index) { 0 }
   let(:turn) { GameTurn.new(board, player, row_index, col_index) }

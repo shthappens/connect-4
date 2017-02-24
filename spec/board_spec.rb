@@ -24,7 +24,7 @@ describe Board do
 
   it "places a player on the board" do
     board = Board.new
-    player = Player.new("X")
+    player = Player.new("Seth", "X")
     board.add_turn(player, 6, 0)
 
     board_printout =
@@ -41,7 +41,7 @@ describe Board do
 
   it "places a player in the center of the bottom row" do
     board = Board.new
-    player = Player.new("O")
+    player = Player.new("Sam", "O")
     board.add_turn(player, 6, 3)
 
     board_printout =
@@ -64,7 +64,7 @@ describe Board do
 
   it "has no empty spaces when the game is completely occupied" do
     board = Board.new
-    player = Player.new("X")
+    player = Player.new("Seth", "X")
     7.times do |index|
       7.times do |col_index|
         board.add_turn(player, index, col_index)

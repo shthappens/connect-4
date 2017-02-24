@@ -3,7 +3,7 @@ require 'spec_helper'
 describe BoardSpace do
   it "is occupied if a player has played there" do
     space = BoardSpace.new
-    space.player = Player.new ("X")
+    space.player = Player.new("Seth", "X")
     expect(space).to be_occupied
   end
   it "is not occupied if a player has not played there" do
@@ -13,14 +13,14 @@ describe BoardSpace do
   end
 
   it "has a player if one is assigned to it" do
-    player = Player.new("X")
+    player = Player.new("Seth", "X")
     space = BoardSpace.new
     space.player = player
     expect(space.player).to eq(player)
   end
 
   it "represents the player occupying it as a string" do
-    player = Player.new("X")
+    player = Player.new("Seth", "X")
     space = BoardSpace.new
     space.player = player
     expect(space.to_char).to eq("X")

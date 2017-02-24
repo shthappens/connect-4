@@ -14,10 +14,6 @@ class GameTurn
     @col_index = col_index
   end
 
-  def column_full?
-    @board.rows[@row_index][@col_index].occupied?
-  end
-
   def take!
     @board.rows[@row_index][@col_index].player = @player
   end
@@ -71,5 +67,4 @@ class GameTurn
     end
     victory
   end
-
 end
